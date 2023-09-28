@@ -24,7 +24,7 @@ class erp_planner():
         self.points_msg = WaypointsArray()
         self.curvel_msg = Velocity()
         self.index = 0
-        self.target = 40
+        self.target = 150 #40
 
         pure_pursuit = purePursuit()
         pid = pidController()
@@ -49,12 +49,14 @@ class erp_planner():
             ctrl_msg.seq += self.index
 
             print("####################### AVG_STEER : ", avg_steering)
+            print("steering? ; ", ctrl_msg.steering)
+            print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 
-            if(ctrl_msg.steering > 10 or -10 > ctrl_msg.steering):
-                ctrl_msg.brake = 10
-                target_velocity = 55
+            if(20 > ctrl_msg.steering > 10 or -20 < ctrl_msg.steering < -10):   ##10, -10
+                ctrl_msg.brake = 50
+                target_velocity = 100 #55 130
             else:
-                target_velocity = 65
+                target_velocity = 150 #65
 
             control_input= pid.pid(self.curvel_msg.velocity, target_velocity)
 
