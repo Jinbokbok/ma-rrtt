@@ -58,6 +58,21 @@ class erp_planner():
             else:
                 target_velocity = 150 #65
 
+            # if(20 > steering_ori > 10 or -20 < steering_ori < -10):   ##10, -10
+            #     ctrl_msg.brake = 50
+            #     target_velocity = 100 #55 130
+            
+            # elif (10 >= steering_ori >= 7 or -10 <= steering_ori <= -7):  
+            #     ctrl_msg.brake = 30
+            #     target_velocity = 120 #55 130
+            
+            # elif (7 > steering_ori >= 5 or -7 < steering_ori <= -5):  
+            #     ctrl_msg.brake = 0
+            #     target_velocity = 140 #55 130
+            
+            # else:
+            #     target_velocity = 150 #65
+
             control_input= pid.pid(self.curvel_msg.velocity, target_velocity)
 
 
